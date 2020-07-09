@@ -1,0 +1,37 @@
+---
+- hosts: testssh
+  tasks:
+    - name: Test ping
+      ping:
+    - name: Install
+      become: yes
+      yum:
+        name:
+         - mc
+         - docker
+         - git
+         - tar
+        state: latest
+    - name: Starting docker service
+      become: yes
+      service: name=docker.service state=started
+    - name: Make folder
+      file:
+        path: /home/testim/test
+        state: directory
+        mode: '0644'
+    - name: Copy file
+      become: yes
+      copy:
+        src: /home/ec2-user/test6/index.html
+        dest: /home/testim/test/index.html
+        owner: testim
+        group: testim
+        mode: '0664'
+#      notify:
+#        - start docker
+         
+#  handlers:
+#    - name: start docker
+#      become: yes
+#      service: name=docker.service state=started

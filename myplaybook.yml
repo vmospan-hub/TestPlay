@@ -1,0 +1,14 @@
+---
+- hosts: testlocal
+  tasks:
+    - name: Test ping
+      ping:
+    - name: Install
+      become: yes
+      yum:
+        name:
+          - mc
+          - nano
+          - git
+        state: latest
+  

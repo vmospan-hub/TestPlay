@@ -1,0 +1,14 @@
+---
+- hosts: testlocal
+  tasks:
+   - name: Run AWS EC2 instance
+     ec2:
+      key_name: TestPC2
+      instance_type: t2.micro
+      image: ami-076431be05aaf8080
+      region: eu-central-1
+      wait: yes
+#      group:
+      count: 1
+      vpc_subnet_id: subnet-1a698866
+      assign_public_ip: yes

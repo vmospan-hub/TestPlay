@@ -1,0 +1,8 @@
+---
+- hosts: testlocal
+  tasks:
+   - name: Test AWS
+     ec2:
+       instance_ids: i-0a8a29270ed938efd
+       region: eu-central-1
+       state: 'absent'
